@@ -24,7 +24,7 @@ const LoginForm = () => {
         if(response.success){
             toast.success("User login successful");
             const token = response.message.token;
-    //Cookie.set('token', token, { expires: 48*60*60*1000, path: '/', secure: true, sameSite: 'None' });
+    Cookie.set('token', token, { expires: 48*60*60*1000, path: '/', secure: true, sameSite: 'None' });
             router.push('/home');
         }
         else{
