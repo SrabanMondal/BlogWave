@@ -42,7 +42,7 @@ const BlogHome:React.FC<BlogHomeProps> = ({user}) => {
     
   return (
     <>
-    <Heading pl={3} fontSize={['20px','30px']} py={3}>Your Personlized blogs are all here</Heading>
+    <Heading pl={3} fontSize={['20px','30px']} py={3} color={'#d3d3d3'}>Your Personlized blogs are all here</Heading>
     <Flex pb={5} pt={3} direction={'column'} alignItems={'center'} gap={3}>
         {
             blogs &&
@@ -56,7 +56,7 @@ const BlogHome:React.FC<BlogHomeProps> = ({user}) => {
       loading ?
       <Spinner/>
       :
-      <Text>
+      <Text color={'#d3d3d3'}>
         No more blogs to display.
       </Text>
     }

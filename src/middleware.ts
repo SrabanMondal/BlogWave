@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import {jwtVerify} from 'jose'
 export async function middleware(req: NextRequest) {
   let token = req.cookies.get('token')?.value;
-  console.log(req.cookies.getAll());
   const url = req.nextUrl.clone()
   const regex = /^\/blog\/[^\/]+$/;
   if (!token) {
