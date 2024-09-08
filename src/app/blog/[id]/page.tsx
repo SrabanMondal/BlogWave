@@ -13,7 +13,6 @@ const page:React.FC<PageProps> = ({params,searchParams}) => {
   return (
     <Box minH={'100vh'} w={'100vw'} bgImage={'/dark3.avif'}>
     <BlogView auth={auth} id={id}/>
-
     </Box>
   )
 }

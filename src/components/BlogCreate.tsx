@@ -352,10 +352,10 @@ const BlogCreate = () => {
           <Portal>
             <PopoverContent bg="#2B2B2B" borderColor="#434343" color="white">
               <PopoverArrow />
-              <PopoverHeader borderBottomColor="#434343" fontWeight="bold">Enter youtube!</PopoverHeader>
+              <PopoverHeader borderBottomColor="#434343" fontWeight="bold">Enter youtube link!</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-              <Input  value={yturl} onChange={(e)=>setyturl(e.target.value)} placeholder='Paste your embed' type='text' bg="#1C1C1C"
+              <Input  value={yturl} onChange={(e)=>setyturl(e.target.value)} placeholder='Paste your yt video link' type='text' bg="#1C1C1C"
               borderColor="#434343" color="white" _placeholder={{ color: "#A0A0A0" }} _focus={{ borderColor: "#6A057270", boxShadow: "0 0 10px 0px #d3d3d3" }}/>
               </PopoverBody>
               <PopoverFooter display={'flex'} borderTopColor="#434343" justifyContent={'space-around'} gap={2}>
@@ -373,10 +373,10 @@ const BlogCreate = () => {
           <Portal>
             <PopoverContent bg="#2B2B2B" borderColor="#434343" color="white">
               <PopoverArrow />
-              <PopoverHeader borderBottomColor="#434343" fontWeight="bold">Enter spotify!</PopoverHeader>
+              <PopoverHeader borderBottomColor="#434343" fontWeight="bold">Enter spotify music link!</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-              <Input value={spturl} onChange={(e)=>setspturl(e.target.value)} placeholder='Paste your embed' type='text' bg="#1C1C1C"
+              <Input value={spturl} onChange={(e)=>setspturl(e.target.value)} placeholder='Paste your spotify music link' type='text' bg="#1C1C1C"
               borderColor="#434343" color="white" _placeholder={{ color: "#A0A0A0" }} _focus={{ borderColor: "#6A057270", boxShadow: "0 0 10px 0px #d3d3d3" }}
                />
               </PopoverBody>
