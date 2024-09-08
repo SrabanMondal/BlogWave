@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation'
 import PassInput from './PassInput'
+import Cookie from 'js-cookie';
 const LoginForm = () => {
     const router = useRouter();
     const [pending, setpending] = useState(false);
@@ -21,7 +22,9 @@ const LoginForm = () => {
         const email = formdata.get('email') as string;
         const response = await  login(email, password)
         if(response.success){
-            toast.success(response.message);
+            toast.success("User login successful");
+            const token = response.message.token;
+    //Cookie.set('token', token, { expires: 48*60*60*1000, path: '/', secure: true, sameSite: 'None' });
             router.push('/home');
         }
         else{

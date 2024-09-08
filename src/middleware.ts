@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import {jwtVerify} from 'jose'
 export async function middleware(req: NextRequest) {
   let token = req.cookies.get('token')?.value;
+  console.log(req.cookies.getAll());
   const url = req.nextUrl.clone()
   const regex = /^\/blog\/[^\/]+$/;
   if (!token) {
@@ -14,7 +15,8 @@ export async function middleware(req: NextRequest) {
   try {
     //jwt.verify(token as string, process.env.JWT_SECRET??'');
     const secret = new TextEncoder().encode(process.env.JWT_SECRET ?? '');
-    await jwtVerify(token, secret)
+    await jwtVerify(token, secret);
+    //const response = NextResponse.next();
     return NextResponse.next();
   } catch (error) {
     return NextResponse.redirect(new URL('/login', req.url));

@@ -3,6 +3,7 @@ import { Box, FormControl, FormLabel, Input, Button, VStack, Heading, Divider, H
 import { PinInput, PinInputField } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { forgetotp, forgetotpSubmit, otpSubmit, resendOtp } from '@/libs/auth'
+import Cookie from 'js-cookie'
 type OtpProps={
     otpsuccess: Dispatch<SetStateAction<boolean>>;
     otp1?:string;
@@ -21,7 +22,12 @@ const Otp:React.FC<OtpProps> = ({otpsuccess,otp1,email1, login}) => {
     const handleSubmit = async ()=>{
         let response:boolean;
         if(login){
-            response = await forgetotpSubmit(pin);
+           const res = await forgetotpSubmit(pin);
+            if(res.success){
+                const token = res.message.token;
+                Cookie.set('token', token, { expires: 48*60*60*1000, path: '/', secure: true, sameSite: 'None' });
+            }
+            response = res.success;
         }else{
 
         response = await otpSubmit(pin);
@@ -39,7 +45,12 @@ const Otp:React.FC<OtpProps> = ({otpsuccess,otp1,email1, login}) => {
         if(value==otp){
             let response:boolean;
             if(login){
-                response = await forgetotpSubmit(value);
+                const res = await forgetotpSubmit(value);
+            if(res.success){
+                const token = res.message.token;
+                Cookie.set('token', token, { expires: 48*60*60*1000, path: '/', secure: true, sameSite: 'None' });
+            }
+            response = res.success;
             }else{
     
             response = await otpSubmit(value);

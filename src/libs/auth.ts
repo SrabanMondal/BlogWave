@@ -25,7 +25,7 @@ export async  function otpSubmit(otp:string):Promise<boolean>{
         return false;
     }
 }
-export async function login(email:string,password:string): Promise<{message:string,success:boolean}>{
+export async function login(email:string,password:string): Promise<{message:any,success:boolean}>{
     try {
         const response: AxiosResponse<ApiResponse> = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/loginpassword`,{
             email:email,
@@ -75,14 +75,15 @@ export async function forgetotp(email:string) : Promise<string> {
     }
 }
 
-export async function forgetotpSubmit( otp: string) : Promise<boolean> {
+export async function forgetotpSubmit( otp: string) : Promise<{message:any,success:boolean}> {
     try{
         const response: AxiosResponse<ApiResponse> = await axios.post(process.env.NEXT_PUBLIC_API_URL+'/api/v1/user/loginverifyotp',{
             otp:otp
         },{withCredentials:true})
-        return response.data.success
+        return response.data
     }catch(error){
-        return false;
+        const err = error as AxiosError
+        return {message: (err.response?.data as {message:string})?.message as any, success:false};
     }
 }
 
