@@ -16,11 +16,11 @@ const Forget = ()=>{
         }, 1000);
     }
     return(
-        <VStack w="full" rounded="md" p={2} gap={6}>
+        <VStack w="full" rounded="md" p={2} gap={6} color={'teal'}>
             <VStack overflow={'hidden'} position={'relative'} gap={2} w={'100%'}>
             {
                 !otpsuccess ?
-                <Otp otpsuccess={setotpsuccess}/>
+                <Otp email1='' otpsuccess={setotpsuccess} login={true}/>
                 :
                 <NewPass/>
             }

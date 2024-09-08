@@ -1,16 +1,38 @@
 import React, { FormEvent, useState } from 'react'
 import { Box, FormControl, FormLabel, Input, Button, VStack, Heading, Divider } from '@chakra-ui/react'
 import ImageInput from './ImageInput'
-const ProfileForm = () => {
+import Interest from './Interest';
+type ProfileProps={
+  email: string
+}
+const ProfileForm: React.FC<ProfileProps> = ({email}) => {
     const [name, setname] = useState('');
+    const [profile, setprofile] = useState(false);
     const [file, setfile] = useState<File|null>(null)
-    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+    const [image, setimage] = useState('');
+    const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-       console.log(name, file);
-    }
+       if (!file) return;
+       
+       const formData = new FormData();
+       formData.append('file', file);
+       formData.append('upload_preset', process.env.NEXT_PUBLIC_UPLOAD_PRESET??'');
+       
+       try {
+         const response = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_URL??'', {
+           method: 'POST',
+           body: formData,
+          });
+          const data = await response.json();
+          setimage(data.secure_url);
+          setprofile(true);
+        } catch (error) {
+        }
+      }
   return (
     <>
-     <form onSubmit={handleSubmit}>
+    {!profile?
+      <form onSubmit={handleSubmit}>
         <Heading textAlign={'center'}>Profile</Heading>
         <VStack spacing={2}>
         <ImageInput setFile={setfile}/>
@@ -21,6 +43,11 @@ const ProfileForm = () => {
         <Button mt={3} type='submit' colorScheme='teal'>Register</Button>
         </VStack>
     </form>
+    :
+    <>
+    <Interest name={name} image={image} email={email}/>
+    </>
+    }
     </>
   )
 }

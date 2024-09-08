@@ -7,68 +7,68 @@ const Fish2 = () => {
     <>
     <MotionBox bgImage={'/fish2.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x: 10, y: 0}}
-    whileInView={{x: '140vw'}}
-    transition={{duration:5}}
+    animate={{x: '140vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish2.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x: 10, y: 0}}
-    whileInView={{x: '140vw'}}
-    transition={{duration:5}}
+    animate={{x: '140vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish4.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x:'calc(100vw - 100px)', y: 0}}
-    whileInView={{x: '-40vw'}}
-    transition={{duration:5}}
+    animate={{x: '-40vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish3.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x:'calc(100vw - 100px)', y: 0}}
-    whileInView={{x: '-40vw'}}
-    transition={{duration:5}}
+    animate={{x: '-40vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     <MotionBox bgImage={'/fish3.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x:'calc(100vw - 100px)', y: 0}}
-    whileInView={{x: '-40vw'}}
-    transition={{duration:5}}
+    animate={{x: '-40vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     </MotionBox>
     <MotionBox bgImage={'/fish2.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x: 10, y: 0}}
-    whileInView={{x: '140vw'}}
-    transition={{duration:5}}
+    animate={{x: '140vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x:'calc(100vw - 100px)', y: 0}}
-    whileInView={{x: '-40vw'}}
-    transition={{duration:5}}
+    animate={{x: '-40vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish2.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x: 10, y: 0}}
-    whileInView={{x: '140vw'}}
-    transition={{duration:5}}
+    animate={{x: '140vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish2.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x: 10, y: 0}}
-    whileInView={{x: '140vw'}}
-    transition={{duration:5}}
+    animate={{x: '140vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish2.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x: 10, y: 0}}
-    whileInView={{x: '140vw'}}
-    transition={{duration:5}}
+    animate={{x: '140vw'}}
+    transition={{duration:5, repeat:Infinity}}
     >
     </MotionBox>
     <MotionBox bgImage={'/fish3.png'} bgRepeat={'no-repeat'} w={'100vw'} h={'400px'}
     initial={{x:'calc(100vw - 100px)', y: 0}}
-    whileInView={{x: '-40vw'}}
-    transition={{duration:5}}
+    animate={{x: '-40vw'}}
+    transition={{duration:5, repeat:Infinity}}
     ></MotionBox>
          </>
   )

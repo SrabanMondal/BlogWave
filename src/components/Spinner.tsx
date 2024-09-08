@@ -1,38 +1,30 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import { Spinner, Center, Box } from '@chakra-ui/react';
+import React, { useRef } from 'react';
+import { Center, Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
 const MotionCenter = motion(Center);
 const MotionBox = motion(Box);
 
 const Loading1: React.FC = () => {
-  const [startAnimation, setStartAnimation] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setStartAnimation(true);
-    }, 3000); // 3 seconds delay
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  const box = useRef<HTMLDivElement>(null)
   return (
     <MotionCenter
-      position="fixed"
-      top="0"
-      left="0"
-      width="100%"
-      height="100%"
+    position={'absolute'}
+    top={0}
+    left={0}
+    ref={box}
+      width="100vw"
+      height="100vh"
       backgroundImage={'/loadbg4.jpg'}
       backgroundSize={'cover'} backgroundPosition={'center'}
       zIndex="5"
-      initial={{ top: 0, left: 0 }}
-      animate={ { top: "100%" }}
-      transition={{ duration: 2.9, ease: "easeIn" , delay: 3}}
+      initial={{opacity:1 }}
+      animate={ { opacity:0.2 }}
+      transition={{ duration: 4, ease: "easeIn" , delay: 1}}
       onAnimationComplete={() => {
-        if (startAnimation) {
-          // Hide the spinner after the animation completes
+        if(box.current){
+          box.current.style.display = "none";
         }
       }}
       className="spinner-container"

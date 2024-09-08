@@ -31,4 +31,17 @@ body {
     text-wrap: balance;
   }
 }
+::-webkit-scrollbar {
+  width: 0px; /* or height if you are targeting vertical scroll bars */
+  background: transparent; /* Optional: make the scrollbar background transparent */
+}
 
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Optional: make the scrollbar thumb transparent */
+}
+body{
+  width: 90vw !important;
+}
+iframe {
+  background-color: transparent !important;
+}

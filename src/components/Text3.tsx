@@ -1,8 +1,9 @@
 import { Environment, useGLTF } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, Suspense } from 'react'
 import { Mesh, Vector3 } from 'three'
 import gsap from 'gsap'
+useGLTF.preload('/blogwave4.glb');
 const GLTF = ({inView}:{inView:boolean})=>{
     const {scene}= useGLTF('/blogwave4.glb')
     const text = useRef<Mesh>();
@@ -41,19 +42,15 @@ const GLTF = ({inView}:{inView:boolean})=>{
 }
 const Text3 = ({inView}:{inView:boolean}) => {
   const boxref = useRef<HTMLCanvasElement>(null);
-  // useEffect(()=>{
-  //   if(boxref.current){
-  //     if(inView){
-  //       gsap.to(boxref.current,{rotateY:'1080deg', duration:8})
-  //     }
-  //   }
-  // })
   return (
         <Canvas ref={boxref} style={{transformStyle:'preserve-3d',
           perspective: '1000px'}}>
             <ambientLight intensity={0.5}/>
             <directionalLight position={[-3,1,-10]} intensity={60}/>
+            <Suspense fallback={null}>
+
             <GLTF inView={inView}/>
+            </Suspense>
         </Canvas>
   )
 }

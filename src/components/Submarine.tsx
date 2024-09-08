@@ -1,7 +1,7 @@
 "use client"
 import React, {useState, useEffect, useRef} from 'react'
 import { Box } from '@chakra-ui/react'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import TransitionLink from './TransistionLink'
 import { useInView } from 'react-intersection-observer'
 import Scene from './ThreeScene'
@@ -12,7 +12,6 @@ type SubmarineProps={
   href: string,
 }
 const Submarine:React.FC<SubmarineProps> = ({label,href}) => {
-    const controls = useAnimation()
     const [open, setopen] = useState(false)
     const [click, setclick] = useState(false)
     const boxref = useRef<HTMLDivElement>(null)
@@ -38,11 +37,12 @@ const Submarine:React.FC<SubmarineProps> = ({label,href}) => {
   }, [click]);
   
   const [ref, inView] = useInView({
-    triggerOnce: false, // Only trigger once
-    threshold: 0.1,    // Trigger when 10% of the model is visible
+    triggerOnce: true, 
+    threshold: 0.1,   
   });
   return (
-    <MotionBox pointerEvents={'all'} p={0} onClick={()=>setclick(true)} onAnimationComplete={()=>{ setopen(true)}}  ref={boxref} variants={sceneVariants}  initial="far" whileInView="near"   transition={{duration:4, ease:'easeIn'}} w={'fit-content'} h={'fit-content'} position={'relative'}>
+    <MotionBox pointerEvents={'all'} p={0} onClick={()=>setclick(true)} onAnimationComplete={ ()=>{ setopen(true);
+    }}  ref={boxref} variants={sceneVariants}  initial="far" animate={inView?"near":''}   transition={{duration:4, ease:'easeIn'}} w={'fit-content'} h={'fit-content'} position={'relative'}>
       <Box p={0} className={'w-48'} ref={ref} display={'flex'} justifyContent={'center'} h={'fit-content'} >
     <TransitionLink href={href} label={label} open={open}>
     <Scene inView={inView}/>

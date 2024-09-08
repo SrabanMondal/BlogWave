@@ -17,11 +17,11 @@ const ImageInput: React.FC<ImageInputProps> = ({setFile}) => {
   };
 
   return (
-    <Box position="relative" display="inline-block" pt={2}>
+    <Box position="relative" pt={2}>
       <Input required type="file" accept="image/*" onChange={handleImageChange} opacity="0" position="absolute" top="0" left="0" width="100%" height="100%"
-      cursor="pointer"zIndex="2"/>
-      <Box width="100px" height="100px" borderRadius="50%" overflow="hidden" border="2px solid" borderColor="gray.300" backgroundColor="gray.100" display="flex"
-        justifyContent="center" alignItems="center" position="relative"cursor="pointer">
+      cursor="pointer" zIndex="2"/>
+      <Box pointerEvents={'none'} width="100px" height="100px" borderRadius="50%" overflow="hidden" border="2px solid" borderColor="gray.300" backgroundColor="gray.100" display="flex"
+        justifyContent="center" alignItems="center" position="relative" cursor="pointer">
         {image ? (
           <Image src={image as string} alt="Preview" objectFit="cover" width="100%" height="100%" />
         ) : (

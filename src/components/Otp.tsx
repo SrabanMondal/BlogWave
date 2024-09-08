@@ -2,22 +2,54 @@ import React, { Dispatch, SetStateAction, useState, Fragment, useRef, ChangeEven
 import { Box, FormControl, FormLabel, Input, Button, VStack, Heading, Divider, HStack, Flex } from '@chakra-ui/react'
 import { PinInput, PinInputField } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import { forgetotp, forgetotpSubmit, otpSubmit, resendOtp } from '@/libs/auth'
 type OtpProps={
-    otpsuccess: Dispatch<SetStateAction<boolean>>
+    otpsuccess: Dispatch<SetStateAction<boolean>>;
+    otp1?:string;
+    email1: string;
+    login:boolean
 }
 const MotionBox = motion(Box);
-const Otp:React.FC<OtpProps> = ({otpsuccess}) => {
-    const box = useRef<HTMLDivElement>(null);
-    const [otpsent, setotpsent] = useState<number>(0);
+const Otp:React.FC<OtpProps> = ({otpsuccess,otp1,email1, login}) => {
+    const [otpsent, setotpsent] = useState<number>(otp1?1:0);
+    const [email, setemail] = useState(email1);
     const [placeholder, setplaceholder] = useState('')
     const [block, setblock] = useState(false)
     const [count, setcount] = useState<number|null>(null)
+    const [otp, setotp] = useState(otp1??'');
     const [pin, setpin] = useState('');
-    const handleChange = (value: string) => {
-        setpin(value);
-        console.log(value);
-        if(pin.length==4){
+    const handleSubmit = async ()=>{
+        let response:boolean;
+        if(login){
+            response = await forgetotpSubmit(pin);
+        }else{
+
+        response = await otpSubmit(pin);
+        }
+
+        if(response){
             otpsuccess(true);
+        }
+        else{
+            otpsuccess(false);
+        }
+    }
+    const handleChange = async (value: string) => {
+        setpin(value);
+        if(value==otp){
+            let response:boolean;
+            if(login){
+                response = await forgetotpSubmit(value);
+            }else{
+    
+            response = await otpSubmit(value);
+            }
+            if(response){
+                otpsuccess(true);
+            }
+            else{
+                otpsuccess(false);
+            }
         }
     }
     useEffect(() => {
@@ -31,16 +63,25 @@ const Otp:React.FC<OtpProps> = ({otpsuccess}) => {
     
         return () => clearTimeout(timer);
       }, [count]);
-    const [email, setemail] = useState('');
     const handleClick = async ()=>{
         setblock(true);
-        setcount(10);
+        setcount(60);
         if(email.length>0){
-
-            console.log(email);
-            setTimeout(()=>{
-                setotpsent(prev=>prev+1);
-            },1000)
+            const response = await forgetotp(email);
+            setotp(response);
+            setotpsent(prev=>prev+1);
+        }
+        else{
+            setplaceholder('Enter email address');
+        }
+    }
+    const handleReClick = async ()=>{
+        setblock(true);
+        setcount(60);
+        if(email.length>0){
+            const response = await resendOtp(email);
+            setotp(response);
+            setotpsent(prev=>prev+1);
         }
         else{
             setplaceholder('Enter email address');
@@ -48,14 +89,14 @@ const Otp:React.FC<OtpProps> = ({otpsuccess}) => {
     }
   return(
     <>
-    <Heading >Verify your account</Heading>
+    <Heading px={2} mb={2}>Verify your account</Heading>
     {
         !otpsent?
         <>
-        <VStack>
+        <VStack px={2}>
         <FormControl>
         <FormLabel>Email Address</FormLabel>
-        <Input border={'2px'} borderColor={'#0492C2'} isRequired value={email} onChange={(e:ChangeEvent<HTMLInputElement>)=>setemail(e.target.value)} key={0} type="email" placeholder={placeholder} _placeholder={{color:'#ff0800'}} />
+        <Input border={'2px'} borderColor={'#0492C2'} isRequired key={0} type="email" value={email} onChange={(e)=>setemail(e.target.value)} placeholder={placeholder} _placeholder={{color:'#ff0800'}} />
         </FormControl>
         <Button onClick={handleClick} type='submit' variant="solid" colorScheme="blue">
         Send OTP
@@ -64,8 +105,8 @@ const Otp:React.FC<OtpProps> = ({otpsuccess}) => {
         </>
         :
         <Fragment key={otpsent}>
-            <Heading textAlign={'left'} w={'100%'} fontSize={'15px'}>Otp sent to {email}</Heading>
-            <VStack>
+            <Heading px={2} mb={1} textAlign={'left'} w={'100%'} fontSize={'17px'}>Otp sent to {email}</Heading>
+            <VStack px={2}>
         <FormControl>
         <FormLabel>Enter OTP</FormLabel>
         <HStack justifyContent={'center'}>
@@ -77,9 +118,9 @@ const Otp:React.FC<OtpProps> = ({otpsuccess}) => {
             </PinInput>
         </HStack>
         </FormControl>
-        <Flex justifyContent={'space-evenly'} w={'100%'}>
-        <Button type="submit" colorScheme='green'>Submit</Button>
-        <Button type="submit" isDisabled={block} colorScheme='blue' onClick={handleClick}>{block?`Resend in ${count}`:'Resend OTP'}</Button>
+        <Flex justifyContent={'space-around'} w={'100%'}>
+        <Button onClick={handleSubmit} type="submit" colorScheme='green'>Submit</Button>
+        <Button type="submit" isDisabled={block} colorScheme='cyan' onClick={handleReClick}>{block?`Resend in ${count}`:'Resend OTP'}</Button>
         </Flex>
             </VStack>
         </Fragment>

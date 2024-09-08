@@ -1,17 +1,21 @@
 import { useRouter } from 'next/navigation'
 import React, { FormEvent, useState } from 'react'
-import { Box, FormControl, FormLabel, Input, Button, VStack, Heading, Divider, HStack, Flex, Text } from '@chakra-ui/react'
-import Head from 'next/head'
+import { FormControl, FormLabel, Button, VStack, Heading, HStack, Text } from '@chakra-ui/react'
+import Link from 'next/link'
+import { forgetpass } from '@/libs/auth'
+import PassInput from './PassInput'
 const NewPass = () => {
-    const router = useRouter();
+    const [forget, setforget] = useState(false)
     const [error, seterror] = useState(false);
-    const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
+    const [pass, setpass] = useState(false);
+    const handleSubmit = async (e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         const formdata = new FormData(e.currentTarget);
-        const pass = formdata.get('pass');
-        const rpass = formdata.get('rpass');
+        const pass = formdata.get('pass') as string;
+        const rpass = formdata.get('rpass') as string;
         if(pass==rpass){
-            window.location.reload();
+           const response = await forgetpass(pass);
+            setpass(response);
         }
         else{
             seterror(true);
@@ -19,21 +23,43 @@ const NewPass = () => {
     }
   return (
     <>
-    <Heading>New Password</Heading>
+    {forget?
+    !pass?
+        <>
+        <Heading>New Password</Heading>
     <form onSubmit={handleSubmit}>
     <VStack>
         <FormControl>
             <FormLabel>New Password</FormLabel>
-            <Input name='pass' required type="password" placeholder="Enter new password" />
+            <PassInput/>
         </FormControl>
         <FormControl>
             <FormLabel>Confirm New Password</FormLabel>
-            <Input name='rpass' required type="password" placeholder="Confirm new password" />
+           <PassInput/>
         </FormControl>
         {error && <Text color='red'>Passwords not match</Text>}
-        <Button type='submit' colorScheme='teal'>Save</Button>
+        <Button type='submit' size={'md'} px={6} colorScheme='green'py={2} border={'2px solid rgba(0,255,0,0.3)'}>Save</Button>
     </VStack>
     </form>
+        </>
+        :
+        <VStack spacing={5}>
+        <Heading whiteSpace={'wrap'}>New password has been set!</Heading>
+        <Link href={'/home'}>
+        <Button colorScheme='green' p={2}>Go to Home page</Button>
+        </Link>
+        </VStack>
+        :
+        <VStack spacing={5}>
+        <Heading whiteSpace={'wrap'}>OTP verified, Welcome back user!</Heading>
+        <HStack spacing={4}>
+        <Button colorScheme='green' whiteSpace={'wrap'} onClick={()=>setforget(true)}>Update Password</Button>
+        <Link href={'/home'}>
+        <Button colorScheme='green' whiteSpace={'wrap'} h={'fit-content'} p={2}>Go to Home</Button>
+        </Link>
+        </HStack>
+        </VStack>
+    }
     </>
   )
 }

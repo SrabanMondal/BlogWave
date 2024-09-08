@@ -22,11 +22,10 @@ const TransitionLink = ({ href, children,label, open }: Props) => {
   }
   const [isOpen, setisOpen] = useState(false)
   useEffect(()=>{
-    console.log(open);
     setisOpen(open);
   },[open])
   return (
-    <Tooltip p={0} label={label} placement="top" isOpen={isOpen} hasArrow arrowSize={10}>
+    <Tooltip zIndex={10} aria-label="a tooltip" padding={3} label={label} bg='red.300' rounded={'full'} placement="top" isOpen={isOpen} hasArrow arrowSize={10}>
 
     <button className="p-0"
       onClick={handleClick}

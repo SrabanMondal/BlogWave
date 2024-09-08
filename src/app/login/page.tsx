@@ -4,6 +4,7 @@ import ParticleCanvas from '@/components/ParticleCanvas'
 import { Box, Button } from '@chakra-ui/react'
 import Submarine from '@/components/Submarine'
 import LoginForm from '@/components/LoginForm'
+import { ToastContainer } from 'react-toastify'
 const page = () => {
   return (
     <>
@@ -20,6 +21,7 @@ const page = () => {
       </Box>
       </Box>
     </Box>
+    <ToastContainer/>
     </>
 
   )

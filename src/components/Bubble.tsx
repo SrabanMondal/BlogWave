@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, BoxProps } from '@chakra-ui/react';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -8,6 +8,7 @@ interface BubbleProps extends BoxProps {
 }
 const MotionBox= motion(Box);
 const Bubble: React.FC<BubbleProps> = ({ delay }) => {
+  const ref= useRef<HTMLDivElement>(null)
   const [anime, setanime] = useState(false);
   const bubbleVariants: Variants = {
     initial: { y: '0', opacity: 1 },
@@ -20,6 +21,7 @@ const Bubble: React.FC<BubbleProps> = ({ delay }) => {
 
   return (
     <MotionBox
+    ref={ref}
       variants={bubbleVariants}
       width={`${Math.random() * 30 + 50}px`}
       height={`${Math.random() * 30 + 50}px`}
@@ -33,6 +35,11 @@ const Bubble: React.FC<BubbleProps> = ({ delay }) => {
       initial="initial"
       onViewportEnter={()=>{
         setanime(true);
+      }}
+      onAnimationComplete={()=>{
+        if(ref.current){
+          ref.current.style.display="none";
+        }
       }}
       animate={anime?'animate':''}
  
@@ -50,7 +57,7 @@ const BubbleAnimation: React.FC = () => {
     }
   }, [inView, controls]);
 
-  const bubbles = Array.from({ length: 30 }).map((_, index) => (
+  const bubbles = Array.from({ length: 15 }).map((_, index) => (
     <Bubble
       key={index}
       delay={Math.random() * 1}

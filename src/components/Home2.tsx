@@ -1,15 +1,60 @@
-import React, { MouseEvent, MouseEventHandler, ReactNode, useEffect } from 'react'
-import { Flex,Box, Heading, Text, transition } from '@chakra-ui/react'
+import React, { MouseEvent, MouseEventHandler, ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import { Flex,Box, Heading, Text, transition, BoxProps } from '@chakra-ui/react'
 import { Card, CardBody,CardFooter, CardHeader, CardProps } from '@chakra-ui/react';
-import { motion } from 'framer-motion'
+import { motion, useAnimation, Variants } from 'framer-motion'
 import { Courgette, Fredoka, Comic_Neue } from 'next/font/google' 
 const fred = Fredoka({ subsets: ['latin'] });
 const comicNeue = Comic_Neue({ subsets: ['latin'], weight: ['400', '700'] });
 import { Chewy } from 'next/font/google';
 const chewy = Chewy({ subsets: ['latin'], weight: '400' });
 
+interface BubbleProps extends BoxProps {
+  delay: number;
+}
+const Bubble: React.FC<BubbleProps> = ({ delay }) => {
+  const ref= useRef<HTMLDivElement>(null)
+  const [anime, setanime] = useState(false);
+  const bubbleVariants: Variants = {
+    initial: { y: '0', opacity: 1 },
+    animate: {
+      y: '-150vh',
+      opacity: 0,
+      transition: { duration: 3, ease: 'easeOut', delay },
+    },
+  };
+
+  return (
+    <MotionBox
+    ref={ref}
+    display={['none','block']}
+      variants={bubbleVariants}
+      width={`${Math.random() * 30 + 50}px`}
+      height={`${Math.random() * 30 + 50}px`}
+      bgColor={'#CBEFFF40'}
+      backdropBlur={'lg'}
+      backdropFilter={'blur(2px)'}
+      borderRadius="50%"
+      position="absolute"
+      bottom={`${Math.random() * 20+0}%`}
+      left={`${Math.random() * 100}%`}
+      initial="initial"
+      onViewportEnter={()=>{
+        setanime(true);
+      }}
+      onAnimationComplete={()=>{
+        if(ref.current){
+          ref.current.style.display="none";
+        }
+      }}
+      animate={anime?'animate':''}
+ 
+    ></MotionBox>
+  );
+};
+
 const kash = Courgette({subsets:['latin'], weight:'400'})
 import gsap from 'gsap';
+import { useInView } from 'react-intersection-observer';
 const MotionBox = motion(Box);
 const GlassCard:React.FC<{children:ReactNode}> = ({children})=>{
     return(
@@ -31,6 +76,21 @@ const GlassCard:React.FC<{children:ReactNode}> = ({children})=>{
     )
 }
 const Home2 = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('animate');
+    }
+  }, [inView, controls]);
+
+  const bubbles = useMemo(()=>Array.from({ length: 15 }).map((_, index) => (
+    <Bubble
+      key={index}
+      delay={Math.random() * 1}
+    />
+  )),[]);
   const heading={
     initial:{
       x:200
@@ -60,7 +120,7 @@ const Home2 = () => {
         })
     }
   return (
-    <Flex width={'100vw'} height={'100vh'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
+    <Flex ref={ref} position={'relative'} width={'100vw'} height={'100vh'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
             <MotionBox w={'100vw'} custom={0} initial="initial" whileInView="final" variants={heading} >
             <Heading color={'#FF80AB'} fontWeight={'700'} fontFamily={kash.style.fontFamily} textAlign={'center'} fontSize={['30px','30px','50px']}>Why join blog wave?</Heading>
             </MotionBox>
@@ -71,7 +131,7 @@ const Home2 = () => {
           justifyContent={'center'}
           alignItems={'center'}
           >
-            <MotionBox p={5} w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={1} initial="center" whileInView="visible" variants={variants}
+            <MotionBox p={5} w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={1}
             >
               <GlassCard>
                 <CardHeader>
@@ -83,7 +143,7 @@ const Home2 = () => {
                 </CardBody>
               </GlassCard>
             </MotionBox>
-            <MotionBox p={5}  w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={2} initial="center" whileInView="visible" variants={variants}  >
+            <MotionBox p={5}  w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={2}  >
             <GlassCard>
               <CardHeader>
               <Heading fontFamily={fred.style.fontFamily} textAlign={'center'} size={['lg','xl']} color={'#ffffff'}>Bookmark and Save</Heading>
@@ -95,7 +155,7 @@ const Home2 = () => {
               </CardBody>
               </GlassCard>
             </MotionBox>
-            <MotionBox p={5} w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={3} initial="center" whileInView="visible" variants={variants}  >
+            <MotionBox p={5} w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={3}  >
               <GlassCard>
                 <CardHeader>
             <Heading fontFamily={fred.style.fontFamily} textAlign={'center'} size={['lg','xl']} color={'#ffffff'}>Personilzed Experience</Heading>
@@ -107,7 +167,7 @@ const Home2 = () => {
                 </CardBody>
               </GlassCard>
             </MotionBox>
-            <MotionBox p={5} w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={4} initial="center" whileInView="visible" variants={variants}  >
+            <MotionBox p={5} w={['fit-content','45%']} display={'flex'} alignItems={'center'} justifyContent={'center'} custom={4}  >
               <GlassCard>
                 <CardHeader>
             <Heading fontFamily={fred.style.fontFamily} textAlign={'center'} size={['lg','xl']} color={'#ffffff'}>Rich Content Creation</Heading>
@@ -120,6 +180,7 @@ const Home2 = () => {
               </GlassCard>
             </MotionBox>
           </Flex>
+          {bubbles}
         </Flex>
   )
 }

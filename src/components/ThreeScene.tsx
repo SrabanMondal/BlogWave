@@ -3,8 +3,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment, OrbitControls } from '@react-three/drei';
 import { Mesh, PointLight, Vector2 } from 'three';
 import gsap from 'gsap'
-
-
 interface GLTFModelProps {
   url: string;
   position?: [number, number, number];
@@ -19,13 +17,10 @@ const GLTFModel: React.FC<GLTFModelProps> = ({ url, position = [0, 0, 0], rotati
  
   useEffect(() => {
     if(mesh.current) {
-      console.log('start');
       if(inView){
-        // gsap.to(mesh.current.position, { x: 0, y: 0, z: 50, duration: 10 });
         gsap.to(mesh.current.scale, { x: 1, y: 1, z: 1, duration: 4, ease:'power1.out'});
         gsap.to(mesh.current.rotation, { x: 0, y: -0.3, z: 0, duration: 4,  ease:'power1.out'});
       }else {
-        // Reset the model's position and scale when out of view
         gsap.set(mesh.current.rotation, { x: 0, y: -1.57, z: 0 });
         gsap.set(mesh.current.scale, { x: 0.2, y: 0.2, z: 0.2 });
     }}
@@ -85,7 +80,6 @@ const Scene: React.FC<SceneProps> = ({inView}) => {
       -(event.clientY / window.innerHeight) * 2 + 1
     ));
   };
-  console.log(inView);
   return (
     <Canvas onPointerMove={handleMouseMove}>
       <ambientLight intensity={0.5} />

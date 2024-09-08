@@ -1,10 +1,10 @@
 import React from 'react'
-import TransitionLink from '@/components/TransistionLink'
 import { Text,Box, useDisclosure, Button } from '@chakra-ui/react'
 import RippleCanvas from '@/components/RippleCanvas'
 import Submarine from '@/components/Submarine'
 import RegisterForm from '@/components/RegisterForm'
 import BubbleEff from '@/components/BubbleEf'
+import { ToastContainer } from "react-toastify";
 const page = () => {
   return (
     <>
@@ -24,6 +24,7 @@ const page = () => {
       </Box>
       </Box>
     </Box>
+    <ToastContainer />
     </>
 
   )
