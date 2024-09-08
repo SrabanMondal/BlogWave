@@ -36,7 +36,7 @@ const ProfileComponent: React.FC<ProfileComponentProps> = ({refresh,user}) => {
     }
   }
   return (
-    <Flex bgImage={'/profilecard.webp'}  minW={["100%", "250px"]} rounded={'xl'}
+    <Flex bgImage={'/profileCard.webp'} bgPosition={'left'}  minW={["100%", "250px"]} rounded={'xl'}
     maxW={["100%", "400px"]}
     h={'100%'}
     alignItems={'center'} px={6} position={'relative'}

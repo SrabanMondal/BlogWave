@@ -68,7 +68,7 @@ const ScrollAnimation: React.FC<ScrollProps> = ({ scroll }) => {
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         WebkitTextStroke: '2px #434343',
-      }} p={2} my={2}>Swipe Up!</Heading>
+      }} p={2} my={2}>Scroll Down!</Heading>
           </React.Suspense>
         </Box>
       </Box>
