@@ -65,7 +65,7 @@ export const BlogNav:React.FC<BlogNavProps> = ({id,views,likes,comments,userlike
     }
   }
   const handleSave = async ()=>{
-    const response = await saveblog(id,false);
+    const response = await saveblog(id,true);
     if(response.success){
       setsave(response.message.saved);
     }
