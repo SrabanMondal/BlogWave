@@ -8,7 +8,7 @@ import DraftBlogs from './DraftBlogs'
 const MyBlogs = () => {
     const [refresh, setrefresh] = useState(false)
   return (
-    <Box bgImage={'/dark3.avif'} minH={'88vh'}>
+    <Box bgImage={'/dark3.avif'} minH={'88vh'} color={'#dcdcdc'}>
         <Tabs variant={'enclosed'} >
             <TabList pt={2} px={2} backdropFilter={'4px'} backdropBlur={'4px'} bg='#88888820' >
                 <Tab _selected={{border:'2px solid #0b7a4b', color:'#E0FFF4',boxShadow:"inset 0 0 20px #0b7a4b80, inset 0 0 30px #0b7a4b70, inset 0 0 40px #0b7a4b60"}} fontSize={'20px'} fontWeight={700} >Drafts</Tab>
