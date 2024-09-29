@@ -25,7 +25,9 @@ const BlogView:React.FC<ViewProps> = ({id,auth}) => {
          setfollow(response.message.follow)
         } 
       }
+        if(blog){
       fetchFollow()
+        }
     }, [blog?.owner._id,blog])
     
     const handleFollow = async ()=>{
