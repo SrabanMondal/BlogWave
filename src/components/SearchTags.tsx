@@ -26,7 +26,7 @@ const SearchTags:React.FC<SearchTagProps> = ({setblogs,toggle}) => {
     }
 }
   return (
-    <Flex direction={'column'} gap={4}>
+    <Flex direction={'column'} gap={4} color={'#dcdcdc'}>
           <Heading fontWeight={700} color={'#dcdcdc'} textAlign={'center'}>
             Search by Tags
           </Heading>
@@ -60,7 +60,7 @@ const SearchTags:React.FC<SearchTagProps> = ({setblogs,toggle}) => {
   <PopoverTrigger>
           <Button leftIcon={<AddIcon/>}>Add tags</Button>
   </PopoverTrigger>
-  <PopoverContent maxW={'70vw'} bg='#191919' maxH={'60vh'} rounded={'xl'} overflow={'scroll'}  border={'1px solid #7df9ff'}>
+  <PopoverContent color={'#dcdcdc'} maxW={'70vw'} bg='#191919' maxH={'60vh'} rounded={'xl'} overflow={'scroll'}  border={'1px solid #7df9ff'}>
     <PopoverArrow bg='#f5f5f5' />
     <PopoverCloseButton />
     <PopoverHeader>
