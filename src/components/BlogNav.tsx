@@ -77,13 +77,13 @@ export const BlogNav:React.FC<BlogNavProps> = ({id,views,likes,comments,userlike
   const latestComments = comments.slice().reverse();
   latestComments.reverse();
   return (
-    <Flex justifyContent={'space-between'} direction={['column','row']} gap={[3,1]} alignItems={['flex-start','center']} w={'100%'} px={3}>
+    <Flex color={'#dcdcdc'} justifyContent={'space-between'} direction={['column','row']} gap={[3,1]} alignItems={['flex-start','center']} w={'100%'} px={3}>
         <Flex>
             <Text>{views=='1'? views+ ' person has viewed it':views+' persons have viewed it'}</Text>
         </Flex>
         <Flex alignItems={'center'} gap={4}>
             <Button isDisabled={auth=='false'} display={'flex'} alignItems={'center'} variant={!liked?'solid':'ghost'} gap={2} onClick={handleLike}>{!liked?<CustomIcon image='/heart2unlike.png'/>:<CustomIcon image='/heart2.png'/>}<Text fontSize={''}>{likess}</Text></Button>
-            <Button onClick={onOpen} display={'flex'} bgColor={'#c0c0c040'} variant={'solid'} alignItems={'center'} gap={2}>
+            <Button onClick={onOpen} display={'flex'} bgColor={'#c0c0c040'} _hover={{backgroundColor:'#c0c0c080'}} alignItems={'center'} gap={2}>
               <CustomIcon image='/comment.png'/>
               <Text> {comments?.length}</Text></Button>
             <ShareButton id={id}/>
