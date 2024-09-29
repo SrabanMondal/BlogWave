@@ -17,7 +17,7 @@ const SearchPage = () => {
             <SearchTags setblogs={setSearchResults} toggle={settoggle}/>
         }
 <Divider/>
-        <Box w="full">
+        <Box w="full" color={'#dcdcdc'}>
           <Heading fontSize={'30px'} mb={4}>
             Search Results
           </Heading>
