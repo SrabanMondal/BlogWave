@@ -11,9 +11,7 @@ const config={
   }
 const Chakra: React.FC<Props> = ({children}) => {
   return (
-    <ChakraProvider theme={theme}>
-        <CSSReset/>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
+    <ChakraProvider>
     {children}
     </ChakraProvider>
   )
