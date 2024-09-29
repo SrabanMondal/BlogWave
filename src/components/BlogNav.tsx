@@ -82,7 +82,7 @@ export const BlogNav:React.FC<BlogNavProps> = ({id,views,likes,comments,userlike
             <Text>{views=='1'? views+ ' person has viewed it':views+' persons have viewed it'}</Text>
         </Flex>
         <Flex alignItems={'center'} gap={4}>
-            <Button color={'#dcdcdc'} isDisabled={auth=='false'} display={'flex'} alignItems={'center'} variant={!liked?'solid':'ghost'} gap={2} onClick={handleLike}>{!liked?<CustomIcon image='/heart2unlike.png'/>:<CustomIcon image='/heart2.png'/>}<Text color={'#dcdcdc'} fontSize={''}>{likess}</Text></Button>
+            <Button color={'#dcdcdc'} isDisabled={auth=='false'} display={'flex'} alignItems={'center'} variant={!liked?'solid':'ghost'} gap={2} onClick={handleLike}>{!liked?<CustomIcon image='/heart2unlike.png'/>:<CustomIcon image='/heart2.png'/>}<Text fontSize={''}>{likess}</Text></Button>
             <Button onClick={onOpen} display={'flex'} bgColor={'#dcdcdc'} _hover={{backgroundColor:'#dcdcdc80'}} alignItems={'center'} gap={2}>
               <CustomIcon image='/comment.png'/>
               <Text color={'#434343'}> {comments?.length}</Text></Button>
