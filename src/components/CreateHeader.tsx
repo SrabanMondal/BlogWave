@@ -75,7 +75,7 @@ color={'#d3d3d3'}
             <Button
               onClick={() => handleInterestClick(interest)}
               size={'sm'} whiteSpace={'pre-wrap'}
-              colorScheme={selectedInterests.includes(interest) ? 'purple' : 'gray'}
+              colorScheme={selectedInterests.includes(interest) ? 'purple' : 'cyan'}
               textAlign={'center'} w={'100px'} py={6}
                 color={'#dcdcdc'}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
@@ -127,7 +127,7 @@ color={'#d3d3d3'}
             <Button
               onClick={() => handleInterestClick(interest)}
               size={'sm'} whiteSpace={'pre-wrap'}
-              colorScheme={selectedInterests.includes(interest) ? 'purple' : 'gray'}
+              colorScheme={selectedInterests.includes(interest) ? 'purple' : 'teal'}
               textAlign={'center'} w={'100px'} py={6}
                 color={'#dcdcdc'}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
