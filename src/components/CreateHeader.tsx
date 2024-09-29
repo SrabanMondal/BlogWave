@@ -76,6 +76,7 @@ const CreateHeader:React.FC<CreateHeaderProps> = ({pending,edit,handlePublish,ha
               size={'sm'} whiteSpace={'pre-wrap'}
               colorScheme={selectedInterests.includes(interest) ? 'purple' : 'gray'}
               textAlign={'center'} w={'100px'} py={6}
+                color={'#dcdcdc'}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
               >
               {interest}
@@ -126,6 +127,7 @@ const CreateHeader:React.FC<CreateHeaderProps> = ({pending,edit,handlePublish,ha
               size={'sm'} whiteSpace={'pre-wrap'}
               colorScheme={selectedInterests.includes(interest) ? 'purple' : 'gray'}
               textAlign={'center'} w={'100px'} py={6}
+                color={'#dcdcdc'}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
               >
               {interest}
