@@ -39,6 +39,7 @@ const InterestsSelector: React.FC<InterestProps> = ({name,image,email}) => {
               bg={selectedInterests.includes(interest) ? 'cyan.800' : '#00000070'}
               textAlign={'center'} w={'100px'} py={6}
               _hover={{bg:``}}
+              color={'#dcdcdc'}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
             >
               {interest}
