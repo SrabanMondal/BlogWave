@@ -82,10 +82,10 @@ export const BlogNav:React.FC<BlogNavProps> = ({id,views,likes,comments,userlike
             <Text>{views=='1'? views+ ' person has viewed it':views+' persons have viewed it'}</Text>
         </Flex>
         <Flex alignItems={'center'} gap={4}>
-            <Button isDisabled={auth=='false'} display={'flex'} alignItems={'center'} variant={!liked?'solid':'ghost'} gap={2} onClick={handleLike}>{!liked?<CustomIcon image='/heart2unlike.png'/>:<CustomIcon image='/heart2.png'/>}<Text fontSize={''}>{likess}</Text></Button>
-            <Button onClick={onOpen} display={'flex'} bgColor={'#c0c0c040'} _hover={{backgroundColor:'#c0c0c080'}} alignItems={'center'} gap={2}>
+            <Button color={'#dcdcdc'} isDisabled={auth=='false'} display={'flex'} alignItems={'center'} variant={!liked?'solid':'ghost'} gap={2} onClick={handleLike}>{!liked?<CustomIcon image='/heart2unlike.png'/>:<CustomIcon image='/heart2.png'/>}<Text fontSize={''}>{likess}</Text></Button>
+            <Button onClick={onOpen} display={'flex'} bgColor={'#dcdcdc'} _hover={{backgroundColor:'#dcdcdc70'}} alignItems={'center'} gap={2}>
               <CustomIcon image='/comment.png'/>
-              <Text> {comments?.length}</Text></Button>
+              <Text color={'#dcdcdc'}> {comments?.length}</Text></Button>
             <ShareButton id={id}/>
             {
               save?
@@ -102,7 +102,7 @@ export const BlogNav:React.FC<BlogNavProps> = ({id,views,likes,comments,userlike
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerBody rounded={'8px'}  boxShadow={'0 2px 10px 4px rgba(255, 255, 255, 0.7)'} bgColor={'#191919'} border={'2px solid rgba(255, 255, 255, 0.1)'} display={'flex'} flexDirection={'column'} gap={5}>
+          <DrawerBody color={'#dcdcdc'} rounded={'8px'}  boxShadow={'0 2px 10px 4px rgba(255, 255, 255, 0.7)'} bgColor={'#191919'} border={'2px solid rgba(255, 255, 255, 0.1)'} display={'flex'} flexDirection={'column'} gap={5}>
             <Flex direction={'column'} gap={4} px={5}>
               <Heading>Comments</Heading>
               <Textarea placeholder='Enter your comment' value={comment} onChange={(e)=>setcomment(e.target.value)}/>
