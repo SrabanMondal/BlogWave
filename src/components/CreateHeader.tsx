@@ -63,6 +63,7 @@ const CreateHeader:React.FC<CreateHeaderProps> = ({pending,edit,handlePublish,ha
         <ModalContent bg="#2E2E2E"
   border="1px solid #dcdcdc"
   boxShadow="0px 4px 15px #fffff060, 0px -4px 20px #f8dbe770"
+color={'#d3d3d3'}
   borderRadius="md">
           <ModalHeader>Select atleast one Tag</ModalHeader>
           <ModalCloseButton />
@@ -114,6 +115,7 @@ const CreateHeader:React.FC<CreateHeaderProps> = ({pending,edit,handlePublish,ha
         <ModalContent bg="#2E2E2E"
   border="1px solid #dcdcdc"
   boxShadow="0px 4px 15px #fffff060, 0px -4px 20px #f8dbe770"
+color={'#d3d3d3'}
   borderRadius="md">
           <ModalHeader>Select atleast one Tag</ModalHeader>
           <ModalCloseButton />
