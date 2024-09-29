@@ -78,6 +78,7 @@ color={'#d3d3d3'}
               colorScheme={selectedInterests.includes(interest) ? 'purple' : 'cyan'}
               textAlign={'center'} w={'100px'} py={6}
                 color={'#dcdcdc'}
+                 _hover={{backgroundColor:'#ffffff60'}}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
               >
               {interest}
@@ -130,6 +131,7 @@ color={'#d3d3d3'}
               colorScheme={selectedInterests.includes(interest) ? 'purple' : 'teal'}
               textAlign={'center'} w={'100px'} py={6}
                 color={'#dcdcdc'}
+                 _hover={{backgroundColor:'#ffffff60'}}
               variant={selectedInterests.includes(interest) ? 'solid' : 'outline'}
               >
               {interest}
