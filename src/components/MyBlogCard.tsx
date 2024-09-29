@@ -79,7 +79,7 @@ const MyBlogCard: React.FC<BlogCardProps> = ({ blog,type,refresh, refr }) => {
       borderRadius="lg"
       backdropBlur={'5px'}
       backdropFilter={'blur(4px)'}
-      bgColor={'#dcdcdc20'}
+      bgColor={'rgba(60, 100, 150, 0.6)'}
       color={'#dcdcdc'}
       overflow="hidden"
       maxW="sm"
