@@ -13,7 +13,7 @@ const BlogHomeCard:React.FC<CardProps> = ({blog,index}) => {
     const date = new Date(blog.createdAt).toLocaleDateString();
   return (
     <TransitionLink href={`/blog/${blog._id}`} label='' open={false}>
-    <Flex border={'1px solid rgba(255, 255, 255, 0.2)'} backdropBlur={'lg'}backdropFilter={'blur(5px)'} backgroundColor={'rgba(255, 255, 255, 0.1)'}  _hover={{backgroundColor:'rgba(255, 255, 255, 0.2)',backdropFilter:'blur(15px)'}}direction={index%2?'row':'row-reverse'} w={['90vw','70vw']} h={['150px','250px']} rounded={'full'} justifyContent={'flex-start'} alignItems={'center'} px={'2'}>
+    <Flex color={'#dcdcdc'} border={'1px solid rgba(255, 255, 255, 0.2)'} backdropBlur={'lg'}backdropFilter={'blur(5px)'} backgroundColor={'rgba(255, 255, 255, 0.1)'}  _hover={{backgroundColor:'rgba(255, 255, 255, 0.2)',backdropFilter:'blur(15px)'}}direction={index%2?'row':'row-reverse'} w={['90vw','70vw']} h={['150px','250px']} rounded={'full'} justifyContent={'flex-start'} alignItems={'center'} px={'2'}>
         <Flex minW={'50%'} ref={ref} boxShadow=' 0 4px 6px 5px rgba(0, 0, 0, 0.8), 0 10px 15px 5px rgba(0, 0, 0, 0.9)' direction={index%2?'row':'row-reverse'} overflow={'hidden'} bgColor={'#2b2b2b'} h={'90%'} rounded={'full'} alignItems={'center'} transition="all 0.9s ease-in-out" gap={3} px={2} onClick={()=>{
             if(ref.current){
                 ref.current.style.flexGrow='10';
